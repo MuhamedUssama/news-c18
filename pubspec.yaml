@@ -39,6 +39,7 @@ dependencies:
   timeago: ^3.7.1
   cached_network_image: ^3.4.1
   dio: ^5.9.2
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
