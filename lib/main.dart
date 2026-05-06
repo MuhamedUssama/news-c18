@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c18/core/resources/app_theme.dart';
 import 'package:news_c18/core/resources/routes_manager.dart';
-import 'package:news_c18/ui/home/screen/home_screen.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   runApp(const MyApp());
@@ -25,14 +24,10 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
-          routes: {
-            RoutesManager.homeRouteName:(_)=>HomeScreen()
-          },
+          routes: RoutesManager.routes,
           initialRoute: RoutesManager.homeRouteName,
         );
       },
     );
   }
 }
-
-

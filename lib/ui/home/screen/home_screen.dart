@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_c18/core/remote/network/api_manager.dart';
+import 'package:news_c18/core/resources/routes_manager.dart';
 import 'package:news_c18/core/resources/strings_manager.dart';
 import 'package:news_c18/model/category_model.dart';
 import 'package:news_c18/ui/artices/screen/articles_widget.dart';
@@ -19,27 +20,35 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(selectedCategory==null?StringsManager.home:selectedCategory!.title),
+        title: Text(
+          selectedCategory == null
+              ? StringsManager.home
+              : selectedCategory!.title,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RoutesManager.searchRouteName);
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
       ),
       drawer: HomeDrawer(backHome),
-      body: selectedCategory==null
-          ?CategoriesWidget(onClick: chooseCategory,)
-          :ArticlesWidget(selectedCategory!),
+      body: selectedCategory == null
+          ? CategoriesWidget(onClick: chooseCategory)
+          : ArticlesWidget(selectedCategory!),
     );
   }
 
-  chooseCategory(CategoryModel newCategory){
+  chooseCategory(CategoryModel newCategory) {
     selectedCategory = newCategory;
-    setState(() {
-
-    });
+    setState(() {});
   }
 
-  backHome(){
+  backHome() {
     Navigator.pop(context);
-    selectedCategory=null;
-    setState(() {
-
-    });
+    selectedCategory = null;
+    setState(() {});
   }
 }
