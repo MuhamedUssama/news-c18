@@ -30,11 +30,16 @@ class ApiManager {
     return articlesResponse;
   }
 
-  static Future<ArticlesResponse> search(String query) async {
+  static Future<ArticlesResponse> search(String query, int page) async {
     //?sources=bbc-sport
     var response = await dio.get(
       "/v2/everything",
-      queryParameters: {"apiKey": AppConstants.apiKey, "q": query},
+      queryParameters: {
+        "apiKey": AppConstants.apiKey,
+        "q": query,
+        'page': page.toString(),
+        'pageSize': '10',
+      },
     );
     ArticlesResponse articlesResponse = ArticlesResponse.fromJson(
       response.data,
